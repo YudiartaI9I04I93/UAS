@@ -31,6 +31,9 @@
                         <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
+                        <a class="nav-link" href="/products">Products <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>

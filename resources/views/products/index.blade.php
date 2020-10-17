@@ -39,8 +39,25 @@
                 </ul>
             </div>
         </nav>
-        <div class="h2">Hello!</div>
-        <div class="h3"> Ini Webpage Home</div>
+
+        @if(isset($prods))
+        <p>{{ "Ada" }}</p>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ asset('img/'.$prods[3]) }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ $prods[1] }}</h5>
+                <p class="card-text">{{ $prods[4] }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Rp.{{ $prods[2] }},-</li>
+            </ul>
+            <div class="card-body">
+                <a class="card-link">Add to cart</a>
+            </div>
+        </div>
+        @else
+        <p>Tidak ada Data</p>
+        @endif
     </div>
 </body>
 

@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\product;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class ProductController extends Controller
 {
-    private function productExs(){
-        return [
-            ["PR001","Nasi Goreng","15000","nasigoreng.jpg","No micin"],
-            ["PR002","Sayur Ijo","10000","sayurijo.jpg","No gosong"],
-            ["PR003","Ayam Geprek","20000","ayamgeprek.jpg","No Pedas"]
-        ];
-    }
     public function index(){
-        $prods = $this->productExs()[0];
+        $prods = product::first();
         return view('products/index',compact('prods'));
     }
 
     public function showproducts(){
-        $prods = $this->productExs();
+        $prods = product::all();
         return view('products/show',compact('prods'));
     }
 }

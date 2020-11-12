@@ -6,13 +6,13 @@
 <p>{{ "Ada" }}</p>
 @foreach($prods as $prod)
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{ asset('img/'.$prod[3]) }}" alt="Card image cap">
+    <img class="card-img-top" src="{{ asset('img/'.$prod->thumbnail) }}" alt="Card image cap">
     <div class="card-body">
-        <h5 class="card-title">{{ $prod[1] }}</h5>
-        <p class="card-text">{{ $prod[4] }}</p>
+        <h5 class="card-title">{{ $prod->name }}</h5>
+        <p class="card-text">{{ $prod->desc }}</p>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Rp.{{ $prod[2] }},-</li>
+        <li class="list-group-item">Rp.{{ $prod->price }},-</li>
     </ul>
     <div class="card-body">
         <a class="card-link">Add to cart</a>

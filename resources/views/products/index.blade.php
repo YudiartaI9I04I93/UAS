@@ -5,13 +5,13 @@
 @if(isset($prods))
 <p>{{ "Ada" }}</p>
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{ asset('img/'.$prods[3]) }}" alt="Card image cap">
+    <img class="card-img-top" src="{{ asset('img/'.$prods->thumbnail) }}" alt="Card image cap">
     <div class="card-body">
-        <h5 class="card-title">{{ $prods[1] }}</h5>
-        <p class="card-text">{{ $prods[4] }}</p>
+        <h5 class="card-title">{{ $prods->name }}</h5>
+        <p class="card-text">{{ $prods->desc }}</p>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Rp.{{ $prods[2] }},-</li>
+        <li class="list-group-item">Rp.{{ $prods->price }},-</li>
     </ul>
     <div class="card-body">
         <a class="card-link">Add to cart</a>

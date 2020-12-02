@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\App;
 
 class ProductController extends Controller
 {
+
     public function index(){
-        $prods = product::first();
-        return view('products/index',compact('prods'));
+        $prods = product::all();
+        $juml = $prods->count();
+        return view('products/show',compact('prods','juml'));
     }
 
-    public function showproducts(){
-        $prods = product::all();
-        return view('products/show',compact('prods'));
+    public function showProductsByCategory($catid){
+        $prods = product::where('category',$catid)->get();
+        $juml = $prods->count();
+        return view('products/show',compact('prods','juml'));
     }
 }

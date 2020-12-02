@@ -3,14 +3,16 @@
 @section('title','Welcome')
 @section('content')
 @if(isset($kats))
-<p>{{ "Ada" }}</p>
+<p>Jumlah data : {{$juml}}</p>
 @foreach($kats as $kat)
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">{{ $kat->Kategori }}</h5>
-        <p class="card-text">{{ $kat->Keterangan }}</p>
+<a href="/products/category/{{$kat->id}}">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ $kat->Kategori }}</h5>
+            <p class="card-text">{{ $kat->Keterangan }}</p>
+        </div>
     </div>
-</div>
+</a>
 @endforeach
 @else
 <p>Tidak ada Data</p>

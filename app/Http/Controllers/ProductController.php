@@ -23,10 +23,15 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($view = 'card')
     {
         $prods = product::all();
         $juml = $prods->count();
+        if($view == 'card'){
+            return view('products/show',compact('prods','juml'));
+        }else if($view == 'manage'){
+            return view('products/manage',compact('prods','juml'));
+        }
         return view('products/show',compact('prods','juml'));
     }
 
@@ -70,7 +75,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -95,7 +100,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -106,6 +111,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        product::where('id',$id)->delete();
+        return redirect()->route('product.index');
     }
 }

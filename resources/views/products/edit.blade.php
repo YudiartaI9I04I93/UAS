@@ -4,7 +4,7 @@
 @section('content')
 <h2>Edit Data Produk ID : {{$prod->id}}</h2>
 
-<form method="POST" action="/product">
+<form method="POST" action="/products">
     @csrf()
     @method('POST')
     <div class="form-group">
@@ -36,7 +36,14 @@
         <textarea class="form-control" id="descMakanan" rows="3" name="baruDesc" placeholder='bahan dasar daging tikus'>{{$prod->desc}}</textarea>
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" id="submitBaru"/>
+        <input type="submit" class="btn btn-primary btn-lg btn-block" id="submitBaru" value="Simpan"/>
+    </div>
+</form>
+@csrf
+@method('DELETE')
+<form method="POST" action="/products">
+    <div class="form-group">
+        <input type="submit" class="btn btn-danger btn-lg btn-block" id="submitBaru" value="Hapus"/>
     </div>
 </form>
 @endsection

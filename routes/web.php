@@ -22,7 +22,7 @@ Route::get('/home', function () {
     return redirect('/');
 });
 Route::resource('/products',ProductController::class);
-Route::get('/products', [ProductController::class,'index']);
+Route::get('/products/view/{view}', [ProductController::class,'index']);
 Route::get('/products/category/{catid}', [ProductController::class,'showProductsByCategory']);
 
 Route::get('/kategori', [kategoriController::class,'index']);

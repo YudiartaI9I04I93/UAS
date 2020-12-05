@@ -4,7 +4,7 @@
 @section('content')
 <h2>Menambahkan Data Produk Baru</h2>
 
-<form method="POST" action="/product">
+<form method="POST" action="/products">
     @csrf()
     @method('POST')
     <div class="form-group">
@@ -36,7 +36,7 @@
         <textarea class="form-control" id="descMakanan" rows="3" name="">bahan dasar daging tikus</textarea>
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" id="submitBaru"/>
+        <input type="submit" class="btn btn-success btn-lg btn-block" id="submitBaru" value="Tambah"/>
     </div>
 </form>
 @endsection

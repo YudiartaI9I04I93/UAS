@@ -12,10 +12,11 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-    public function showProductsByCategory($catid){
-        $prods = product::where('category',$catid)->get();
+    public function showProductsByCategory($catid)
+    {
+        $prods = product::where('category', $catid)->get();
         $juml = $prods->count();
-        return view('products/show',compact('prods','juml'));
+        return view('products/show', compact('prods', 'juml'));
     }
 
     /**
@@ -23,16 +24,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($view = 'card')
+    public function index($view = '')
     {
         $prods = product::all();
         $juml = $prods->count();
-        if($view == 'card'){
-            return view('products/show',compact('prods','juml'));
-        }else if($view == 'manage'){
-            return view('products/manage',compact('prods','juml'));
+        echo $view;
+        if ($view == 'manage') {
+            return view('products/manage', compact('prods', 'juml'));
+        } else {
+            return view('products/show', compact('prods', 'juml'));
         }
-        return view('products/show',compact('prods','juml'));
     }
 
     /**
@@ -43,7 +44,7 @@ class ProductController extends Controller
     public function create()
     {
         $kats = kategori::all();
-        return view('products/create',compact('kats'));
+        return view('products/create', compact('kats'));
     }
 
     /**
@@ -75,7 +76,6 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -87,8 +87,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $kats = kategori::all();
-        $prod = product::where('id',$id)->first();
-        return view('products/edit',compact('prod','kats'));
+        $prod = product::where('id', $id)->first();
+        return view('products/edit', compact('prod', 'kats'));
     }
 
     /**
@@ -100,7 +100,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
     }
 
     /**
@@ -111,7 +110,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        product::where('id',$id)->delete();
+        product::where('id', $id)->delete();
         return redirect()->route('product.index');
     }
 }

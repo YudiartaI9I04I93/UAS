@@ -25,7 +25,7 @@ Route::resource('/products',ProductController::class);
 Route::get('/products/view/{view}', [ProductController::class,'index']);
 Route::get('/products/category/{catid}', [ProductController::class,'showProductsByCategory']);
 
-Route::get('/kategori', [kategoriController::class,'index']);
+Route::resource('/kategori', kategoriController::class);
 
 Route::get('/about', function () {
     return view('about');

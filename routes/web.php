@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\kategoriController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,15 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get("/logout",function () {
+    Auth::logout();
+    return redirect("/dashboard");
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

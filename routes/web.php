@@ -27,10 +27,12 @@ Route::get('/products/view/{view}', [ProductController::class,'index']);
 Route::get('/products/category/{catid}', [ProductController::class,'showProductsByCategory']);
 
 Route::resource('/kategori', kategoriController::class);
+Route::get('/kategori/chart',[kategoriController::class,'getStatisticData']);
 
 Route::get('/about', function () {
     return view('about');
 });
+
 
 Route::get("/logout",function () {
     Auth::logout();

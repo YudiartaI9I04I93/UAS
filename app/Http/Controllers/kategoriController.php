@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\kategori;
+use App\Models\product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
@@ -20,7 +21,24 @@ class kategoriController extends Controller
         $juml = kategori::count();
         $kats = kategori::all();
 
-        return view('kategori/index', compact('kats', 'juml'));
+        $kats = kategori::get();
+        $role = array("Role"=>"Blue");
+        $a = array("Element","totalProducts",$role);
+        $stats = array($a);
+
+        foreach ($kats as $kat) {
+            $prod = product::where("category",$kat->id)->get();
+            $jml = 0;
+            foreach($prod as $ix){
+                $jml += $ix->qty;
+            }
+            array_push($stats,array($kat->Kategori,$jml,"yellow"));
+        }
+
+        return view('kategori.index', compact('kats', 'juml'))
+        ->with('JNS','BAR')
+        ->with('JudulGrafik',"Total Produk per Kategori")
+        ->with('Stats',$stats);
     }
     /**
      * Show the form for creating a new resource.
@@ -32,6 +50,27 @@ class kategoriController extends Controller
         return view('kategori/create');
     }
 
+    public function getStatisticData(){
+        $kats = kategori::get();
+        $role = array("Role"=>"Blue");
+        $a = array("Element","totalProducts",$role);
+        $stats = array($a);
+
+        foreach ($kats as $kat) {
+            $prod = product::where("category",$kat->id)->get();
+            $jml = 0;
+            foreach($prod as $ix){
+                $jml += $ix->qty;
+            }
+            array_push($stats,array($kat->category,$jml,"yellow"));
+            var_dump($stats);
+        }
+
+        return view('kategori.chart')
+        ->with('JNS','BAR')
+        ->with('JudulGrafik',"Total Produk per Kategori")
+        ->with('Stats',json_encode($stats));
+    }
     /**
      * Store a newly created resource in storage.
      *

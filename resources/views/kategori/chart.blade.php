@@ -2,42 +2,24 @@
 
 @section('title','Welcome')
 @section('content')
-@if(isset($kats))
-<p>Jumlah data : {{$juml}}</p>
-<div class="container-fluid">
-@foreach($kats as $kat)
-<a href="/products/category/{{$kat->id}}" style="color:inherit">
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{ $kat->Kategori }}</h5>
-            <p class="card-text">{{ $kat->Keterangan }}</p>
-        </div>
-    </div>
-</a>
-@endforeach
-</div>
-
-@else
-<p>Tidak ada Data</p>
-@endif
+@if(isset($Stats))
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load("current",{packages:['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart(){
-        var djson = @json($Stats);
-
-        var data = google.visualization.arrayToDataTable(djson);
+        var data = google.visualization.arrayToDataTable(!!$Stats!!);
         var view = new google.visualization.DataView(data);
         @if($JNS=="BAR")
-            view.setColumns([0,
+            view.setColumns([0,1,
             {calc:"stringify",
             sourceColumn:1,
             type:"string",
             role:"annotation"}
-            ,1]);
+            ,2]);
 
             var options = {
-                title:"{{$JudulGrafik}}",
+                title="{{$JudulGrafik}}",
                 width:600,
                 height:400,
                 bar:{groupWidth:"95%"},
@@ -54,7 +36,7 @@
         chart.draw(view,options);
     }
 </script>
-<div class="container-fluid">
-    <div id="columnchart_values" style="width:900px;height:300px;">
-</div>
+@else
+<p>Tidak ada Data</p>
+@endif
 @endsection

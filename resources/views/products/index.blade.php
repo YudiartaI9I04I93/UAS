@@ -1,9 +1,9 @@
-@extends('templates.default')
+@extends('layouts.app')
 
 @section('title','Welcome')
 @section('content')
 @if(isset($prods))
-<p>{{ "Ada" }}</p>
+<p>Jumlah data : {{$juml}}</p>
 <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="{{ asset('img/'.$prods->thumbnail) }}" alt="Card image cap">
     <div class="card-body">
